@@ -12,9 +12,9 @@ import java.util.UUID;
 
 public interface productService {
 
-    GenericProductDto getProductById(Long id) throws NotFoundException;
+    GenericProductDto getProductById(UUID id) throws NotFoundException;
     GenericProductDto createProduct(GenericProductDto product);
     List<GenericProductDto> getAllProducts();
-    GenericProductDto deleteProduct(Long id) throws NotFoundException;
-    GenericProductDto update(GenericProductDto genericProductDto, Long id);
+    GenericProductDto deleteProduct(UUID id) throws NotFoundException;
+    GenericProductDto update(GenericProductDto genericProductDto, UUID id);
 }

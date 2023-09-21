@@ -49,7 +49,7 @@ public class FakeProductServiceImpl implements productService{
         return genericProductDto;
     }
     @Override
-    public GenericProductDto getProductById(Long id) throws NotFoundException {
+    public GenericProductDto getProductById(UUID id) throws NotFoundException {
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductDto> response =
                 restTemplate.getForEntity(getProductRequestUrl, FakeStoreProductDto.class, id);
@@ -86,7 +86,7 @@ public class FakeProductServiceImpl implements productService{
     }
 
     @Override
-    public GenericProductDto deleteProduct(Long id) throws NotFoundException {
+    public GenericProductDto deleteProduct(UUID id) throws NotFoundException {
         RestTemplate restTemplate = restTemplateBuilder.build();
 
         RequestCallback requestCallback = restTemplate.acceptHeaderRequestCallback(FakeStoreProductDto.class);
@@ -106,7 +106,7 @@ public class FakeProductServiceImpl implements productService{
 
     /* TODO- work on the update api */
     @Override
-    public GenericProductDto update(GenericProductDto genericProductDto, Long id) {
+    public GenericProductDto update(GenericProductDto genericProductDto, UUID id) {
         RestTemplate restTemplate = restTemplateBuilder.build();
 
         RequestCallback requestCallback = restTemplate.httpEntityCallback(genericProductDto,FakeStoreProductDto.class);

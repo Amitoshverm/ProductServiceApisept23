@@ -25,6 +25,7 @@ public class Product extends BaseModel {
     @JoinColumn
     private Category category;
     //when mapping we have to do like this
-    private double price;
+    @ManyToOne
+    private Price price;
 
 }
