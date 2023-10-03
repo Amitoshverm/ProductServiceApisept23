@@ -1,13 +1,11 @@
 package com.amitosh.productservice.Service;
 
-import com.amitosh.productservice.Model.Product;
 import com.amitosh.productservice.dtos.FakeStoreProductDto;
 import com.amitosh.productservice.dtos.GenericProductDto;
 import com.amitosh.productservice.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RequestCallback;
@@ -19,7 +17,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service("fakeProductService")
-public class FakeProductServiceImpl implements productService{
+public class FakeProductServiceImpl implements ProductService {
 
     private RestTemplateBuilder restTemplateBuilder;
     //this rest template is to call the third party api and get the data from it
@@ -106,7 +104,7 @@ public class FakeProductServiceImpl implements productService{
 
     /* TODO- work on the update api */
     @Override
-    public GenericProductDto update(GenericProductDto genericProductDto, UUID id) {
+    public GenericProductDto updateProduct(GenericProductDto genericProductDto, UUID id) {
         RestTemplate restTemplate = restTemplateBuilder.build();
 
         RequestCallback requestCallback = restTemplate.httpEntityCallback(genericProductDto,FakeStoreProductDto.class);
@@ -121,6 +119,11 @@ public class FakeProductServiceImpl implements productService{
         genericProductDto.setTitle(fakeStoreProductDto.getTitle());
 
         return genericProductDto;
+    }
+
+    @Override
+    public List<GenericProductDto> getAllProductsWithCategory(UUID category_id) throws NotFoundException {
+        return null;
     }
 
 
